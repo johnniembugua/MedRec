@@ -28,45 +28,48 @@ class ViewPrescription extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width - 100,
-                        child: Text(
-                          "Record #${index + 1}",
-                          style: const TextStyle(
-                              fontSize: 50, fontWeight: FontWeight.bold),
-                        ),
-                      ),
                       IconButton(
                         onPressed: () => Navigator.pop(context),
                         icon: const Icon(CupertinoIcons.chevron_back),
                         iconSize: 40,
-                      )
+                      ),
+                      Spacer(),
+                      SizedBox(
+                        //width: MediaQuery.of(context).size.width - 100,
+                        child: Text(
+                          "Record ${index + 1}",
+                          style: const TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Spacer(),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Icon(
-                        FontAwesomeIcons.clock,
-                        size: 15,
-                        color: Colors.grey,
+                      Icon(
+                        FontAwesomeIcons.dollarSign,
+                        color: Theme.of(context).primaryColor,
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Text(
                         notes.fee,
-                        style: Theme.of(context).textTheme.caption,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Icon(
+                      Icon(
                         FontAwesomeIcons.userDoctor,
-                        size: 15,
-                        color: Colors.grey,
+                        color: Theme.of(context).primaryColor,
                       ),
                       const SizedBox(
                         width: 10,
@@ -76,7 +79,7 @@ class ViewPrescription extends StatelessWidget {
                         // height: 30,
                         child: Text(
                           notes.location,
-                          style: Theme.of(context).textTheme.caption,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
                     ],
@@ -84,173 +87,161 @@ class ViewPrescription extends StatelessWidget {
                   const Divider(
                     thickness: 2,
                   ),
-                  Center(
-                    child: Container(
-                      width: 200,
-                      height: 50,
-                      padding: const EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            FontAwesomeIcons.noteSticky,
-                            color: Colors.black,
-                            size: 25,
+                  Container(
+                    width: 200,
+                    height: 50,
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.noteSticky,
+                          color: Theme.of(context).primaryColor,
+                          size: 25,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: VerticalDivider(
+                            color: Theme.of(context).primaryColor,
+                            thickness: 1,
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: VerticalDivider(
-                              color: Colors.black,
-                              thickness: 1,
-                            ),
+                        ),
+                        Text(
+                          'Notes',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).primaryColor,
                           ),
-                          Text(
-                            'Notes',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        notes.notes,
-                        textAlign: TextAlign.justify,
-                      ),
+                    child: Text(
+                      notes.notes,
+                      textAlign: TextAlign.justify,
                     ),
                   ),
                   const Divider(
                     thickness: 2,
                   ),
-                  Center(
-                    child: Container(
-                      width: 200,
-                      height: 50,
-                      padding: const EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            FontAwesomeIcons.scaleBalanced,
-                            color: Colors.black,
-                            size: 25,
+                  Container(
+                    width: 200,
+                    height: 50,
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.scaleBalanced,
+                          color: Theme.of(context).primaryColor,
+                          size: 25,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: VerticalDivider(
+                            color: Theme.of(context).primaryColor,
+                            thickness: 1,
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: VerticalDivider(
-                              color: Colors.black,
-                              thickness: 1,
-                            ),
+                        ),
+                        Text(
+                          'Vitals',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).primaryColor,
                           ),
-                          Text(
-                            'Vitals',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        notes.vitals,
-                        textAlign: TextAlign.justify,
-                      ),
+                    child: Text(
+                      notes.vitals,
+                      textAlign: TextAlign.justify,
                     ),
                   ),
                   const Divider(
                     thickness: 2,
                   ),
-                  Center(
-                    child: Container(
-                      width: 200,
-                      height: 50,
-                      padding: const EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            FontAwesomeIcons.tablets,
-                            color: Colors.black,
-                            size: 25,
+                  Container(
+                    width: 200,
+                    height: 50,
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.tablets,
+                          color: Theme.of(context).primaryColor,
+                          size: 25,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: VerticalDivider(
+                            color: Theme.of(context).primaryColor,
+                            thickness: 1,
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: VerticalDivider(
-                              color: Colors.black,
-                              thickness: 1,
-                            ),
+                        ),
+                        Text(
+                          'Medicines',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).primaryColor,
                           ),
-                          Text(
-                            'Medicines',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        notes.medicines,
-                        textAlign: TextAlign.justify,
-                      ),
+                    child: Text(
+                      notes.medicines,
+                      textAlign: TextAlign.justify,
                     ),
                   ),
                   const Divider(
                     thickness: 2,
                   ),
-                  Center(
-                    child: Container(
-                      width: 200,
-                      height: 50,
-                      padding: const EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            FontAwesomeIcons.message,
-                            color: Colors.black,
-                            size: 25,
+                  Container(
+                    width: 200,
+                    height: 50,
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.message,
+                          color: Theme.of(context).primaryColor,
+                          size: 25,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: VerticalDivider(
+                            color: Theme.of(context).primaryColor,
+                            thickness: 1,
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: VerticalDivider(
-                              color: Colors.black,
-                              thickness: 1,
-                            ),
+                        ),
+                        Text(
+                          'Advice',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).primaryColor,
                           ),
-                          Text(
-                            'Advice',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        notes.advice,
-                        textAlign: TextAlign.justify,
-                      ),
+                    child: Text(
+                      notes.advice,
+                      textAlign: TextAlign.justify,
                     ),
                   )
                 ]),

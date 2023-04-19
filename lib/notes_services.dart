@@ -3,11 +3,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes_app/global.dart';
 import 'package:notes_app/note.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart' as http;
 import 'package:web_socket_channel/io.dart';
+
+final notesServiceProvider = ChangeNotifierProvider((ref) => NotesServices());
 
 class NotesServices extends ChangeNotifier {
   List<Note> notes = [];
@@ -17,7 +20,7 @@ class NotesServices extends ChangeNotifier {
       Platform.isAndroid ? 'http://10.0.2.2:7545' : 'ws://127.0.0.1:7545';
   bool isLoading = true;
 
-  final String _privatekey = globalPrivateKey!;
+  final String _privatekey = globalPrivateKey;
   // '03a6cd230f000754daf6a2cef9b3bd1d726be32a0c482dc23544c8f4eb245c2c';
   late Web3Client _web3cient;
 

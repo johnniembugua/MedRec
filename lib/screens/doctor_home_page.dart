@@ -2,22 +2,22 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/global.dart';
 import 'package:notes_app/notes_services.dart';
 import 'package:notes_app/screens/view_prescription.dart';
-import 'package:provider/provider.dart';
 
 import 'add_record.dart';
 
-class DoctorsScreen extends StatefulWidget {
+class DoctorsScreen extends ConsumerStatefulWidget {
   const DoctorsScreen({Key? key}) : super(key: key);
 
   @override
-  State<DoctorsScreen> createState() => _DoctorsScreenState();
+  ConsumerState<DoctorsScreen> createState() => _DoctorsScreenState();
 }
 
-class _DoctorsScreenState extends State<DoctorsScreen> {
+class _DoctorsScreenState extends ConsumerState<DoctorsScreen> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController feeController = TextEditingController();
@@ -31,7 +31,7 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var notesServices = context.watch<NotesServices>();
+    var notesServices = ref.watch(notesServiceProvider);
 
     return Scaffold(
       body: notesServices.isLoading

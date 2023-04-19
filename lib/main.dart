@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/home_screen.dart';
-import 'package:notes_app/notes_services.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'screens/splash_screen.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => NotesServices(),
-      child: const MyApp(),
+    const ProviderScope(
+      child: MyApp(),
     ),
   );
 }

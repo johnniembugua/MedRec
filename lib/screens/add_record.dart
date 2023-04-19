@@ -1,21 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/global.dart';
 import 'package:notes_app/screens/login.dart';
-import 'package:provider/provider.dart';
 
 import '../notes_services.dart';
 
-class AddRecordPage extends StatefulWidget {
+class AddRecordPage extends ConsumerStatefulWidget {
   const AddRecordPage({Key? key}) : super(key: key);
 
   @override
-  State<AddRecordPage> createState() => _AddRecordPageState();
+  ConsumerState<AddRecordPage> createState() => _AddRecordPageState();
 }
 
-class _AddRecordPageState extends State<AddRecordPage> {
+class _AddRecordPageState extends ConsumerState<AddRecordPage> {
   TextEditingController feeController = TextEditingController();
   TextEditingController patientAddress = TextEditingController();
   TextEditingController notes = TextEditingController();
@@ -90,7 +89,7 @@ class _AddRecordPageState extends State<AddRecordPage> {
 
   @override
   Widget build(BuildContext context) {
-    var notesServices = context.watch<NotesServices>();
+    var notesServices = ref.watch(notesServiceProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -272,7 +271,7 @@ class _AddRecordPageState extends State<AddRecordPage> {
                                       },
                                       enableSuggestions: true,
                                       prefix: Text(
-                                        'Fee (In Ksh)  | ',
+                                        'Fee (In \$)  | ',
                                         style:
                                             Theme.of(context).textTheme.caption,
                                       ),

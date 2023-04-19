@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:notes_app/home_screen.dart';
 
+import '../core/local/auth_service.dart';
+import 'doctor_home_page.dart';
 import 'login.dart';
 
 class Splash2 extends StatefulWidget {
@@ -16,10 +18,35 @@ class _Splash2State extends State<Splash2> {
   @override
   void initState() {
     super.initState();
-    Timer(
-        const Duration(seconds: 3),
-        () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => LoginPage())));
+    _checkUser();
+  }
+
+  void _checkUser() async {
+    bool found = await AuthService.instance.load();
+    if (!found) {
+      Timer(
+          const Duration(seconds: 3),
+          () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const LoginPage())));
+    } else {
+      if (AuthService.instance.authUser!.user!.role == "Patient") {
+        Timer(
+            const Duration(seconds: 3),
+            () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PatientScreen(),
+                )));
+      } else if (AuthService.instance.authUser!.user!.role == "Doctor") {
+        Timer(
+            const Duration(seconds: 3),
+            () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DoctorsScreen(),
+                )));
+      }
+    }
   }
 
   @override
